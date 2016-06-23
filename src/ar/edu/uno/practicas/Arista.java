@@ -1,42 +1,29 @@
-package ar.edu.uno.practicas;
+package ar.edu.uno.poo2.modulo;
 import java.util.*;
 
 public class Arista {
-	private Vertice a;
-	private Vertice b;
-	private Double probabilidad;
-	
+	private Vertice inicio;
+	private Vertice destino;
+
 	public Arista(Vertice a, Vertice b) {
-		//Ocultamos los métodos para setear a y b.
+		//Ocultamos los mÃ©todos para setear a y b.
 		//Solamente se admite su pasaje al momento de
-		//creación de la arista.
-		this.setA(a); this.setB(b);
-		setProbabilidad(Math.random());
+		//creaciÃ³n de la arista.
+		this.setInicio(a); 
+		this.setDestino(b);
 	}
 
 	//Getters & Setters
-	public Vertice getA() {
-		return a;
+	public Vertice getInicio() {
+		return inicio;
 	}
-	
-	private void setA(Vertice a) {
-		this.a = a;
+	private void setInicio(Vertice a) {
+		this.inicio = a;
 	}
-	
-	public Vertice getB() {
-		return b;
+	public Vertice getDestino() {
+		return destino;
 	}
-	
-	private void setB(Vertice b) {
-		this.b = b;
+	private void setDestino(Vertice b) {
+		this.destino = b;
 	}
-	
-	public Double getProbabilidad() {
-		return probabilidad;
-	}
-	
-	private void setProbabilidad(Double probabilidad) {
-		this.probabilidad = probabilidad;
-	}
-
 }
