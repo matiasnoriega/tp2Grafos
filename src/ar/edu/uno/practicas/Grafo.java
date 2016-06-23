@@ -131,6 +131,73 @@ public class Grafo {
 		return colores;
 	}
 
+	public int[] coloreoWelshPowell(){
+		int grado[]= new int[dimension];
+		int contador;
+		int aux;
+		int k;
+		boolean fila[]= new boolean[dimension];
+		Grafo grafoAux= this;
+		for (int i=0; i< dimension; i++){
+			contador=0;
+			for (int j=i+1; j < dimension; j++){
+				if (matrizAdyacencia[i][j])
+					contador++;
+			}
+			grado[i]=contador;
+		}
+		for (int i=1; i < dimension; i++){
+			aux=grado[i];
+			for (int l=0; l< dimension; l++)
+				fila[i]=grafoAux.matrizAdyacencia[i][l];
+			k= i-1;
+			while ((k>=0) && (aux< grado[k])){
+				grado[k + 1]= grado[k];
+				for (int l=0; l< dimension; l++)
+					fila[k+1]=grafoAux.matrizAdyacencia[k][l];
+				k--;
+			}
+			grado[k+1]= aux;
+			for (int l=0; l< dimension; l++)
+				grafoAux.matrizAdyacencia[k+1][l]=fila[i];
+		}
+		return grafoAux.coloreoSecuencialAleatorio();
+	}
+	
+	public int[] coloreoMatula(){
+		int grado[]= new int[dimension];
+		int contador;
+		int aux;
+		int k;
+		boolean fila[]= new boolean[dimension];
+		Grafo grafoAux= this;
+		for (int i=0; i< dimension; i++){
+			contador=0;
+			for (int j=i+1; j < dimension; j++){
+				if (matrizAdyacencia[i][j])
+					contador++;
+			}
+			grado[i]=contador;
+		}
+		for (int i=1; i < dimension; i++){
+			aux=grado[i];
+			for (int l=0; l< dimension; l++)
+				fila[i]=grafoAux.matrizAdyacencia[i][l];
+			k= i-1;
+			while ((k>=0) && (aux> grado[k])){
+				grado[k + 1]= grado[k];
+				for (int l=0; l< dimension; l++)
+					fila[k+1]=grafoAux.matrizAdyacencia[k][l];
+				k--;
+			}
+			grado[k+1]= aux;
+			for (int l=0; l< dimension; l++)
+				grafoAux.matrizAdyacencia[k+1][l]=fila[i];
+		}
+		return grafoAux.coloreoSecuencialAleatorio();
+	}
+	
+
 	//Getters y Setters
 	public Integer getDimension() {
 		return dimension;
