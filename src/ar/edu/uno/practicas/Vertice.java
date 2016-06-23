@@ -1,4 +1,4 @@
-package ar.edu.uno.practicas;
+package ar.edu.uno.poo2.modulo;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,7 @@ public class Vertice {
 	private ArrayList<Arista> aristas;
 	private String nombre;
 	
-	public Vertice(String n) {
-		this.setNombre(n);
-		aristas = new ArrayList<Arista>();
+	public Vertice() {
 	}
 	
 	private void setNombre(String n) {
