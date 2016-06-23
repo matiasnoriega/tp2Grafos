@@ -98,10 +98,35 @@ public class Grafo {
 
 	}
 	public int[] coloreoSecuencialAleatorio(){
-		int colores[]= new int[this.matrizAdyacencia.length];
-		colores[0]= 1;
-		for (int i = 1 ; i < this.matrizAdyacencia.length; i++){
-
+		int colores[]= new int[dimension];
+		boolean iguales;
+		boolean verticeNoColoreado;
+		
+		for (int i = 1 ; i < dimension; i++){
+			//Al principio le asigno el color más  bajo posible
+			// e inicializo las banderas para iniciar la comprobacion 
+			// de vertices adyacentes con el mismo color
+			colores[i]= 1;
+			iguales= false;
+			verticeNoColoreado= true;
+			while (verticeNoColoreado){
+				for (int j = 1 ; j < dimension; j++){
+					// Si son adyacentes compruebo los colores y de acuerdo a eso
+					// cambio las banderas.
+					if (matrizAdyacencia[j][i]){
+						if (colores[i] == colores[j]){
+							iguales=true;
+						}
+					}
+					if (iguales){
+						verticeNoColoreado=true;
+						iguales= false;
+						colores[i]++;
+					}else{
+						verticeNoColoreado=false;
+					}
+				}
+			}
 		}
 		return colores;
 	}
