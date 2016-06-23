@@ -58,12 +58,12 @@ public class Grafo {
 			}
 		}
 		
-		desordenarVector(aristas, this.vectorAristas);
+		this.vectorAristas=desordenarVector(aristas, this.vectorAristas, porcentaje );
 
 		this.matrizAdyacencia = matrizAuxiliar;
 	}
 
-	public Arista[] desordenarVector(Integer dimension, Arista[] vectorAristas){
+	public Arista[] desordenarVector(Integer dimension, Arista[] vectorAristas, Integer porcentaje){
 
 		Arista[] vectorAuxiliarArista = vectorAristas;
 		Integer[] vectorAuxiliarDesorden = new Integer[dimension];    
@@ -88,8 +88,13 @@ public class Grafo {
 			}
 			vectorAuxiliarDesorden[j] = index;
 		}
+		Integer nuevoTamano = (porcentaje*dimension)/100;
+		Arista[] vectorTemporal = new Arista[nuevoTamano];
+		for(int i=0;i<nuevoTamano;i++){
+			vectorTemporal[i]=vectorAuxiliarArista[i];
+		}
 		
-		return vectorAuxiliarArista;
+		return vectorTemporal;
 
 	}
 	public int[] coloreoSecuencialAleatorio(){
