@@ -6,6 +6,9 @@ public class Grafo {
 	private Arista[] vectorAristas;
 	private Vertice[] vectorVertices;
 	private Integer dimension;
+	private Integer porcentaje;
+	private int[] vectorColores;
+	private int cantidadColores = 0;
 
 
 	public Grafo (int dimension, double probabilidad){
@@ -39,7 +42,7 @@ public class Grafo {
 
 		//lleno el vector vertice con vertices vacios por ahora
 		for (int i=0;i<dimension;i++){
-			this.vectorVertices[i] = new Vertice();
+				this.vectorVertices[i] = new Vertice();
 		}
 		//genero una matriz de adyacencia toda en true, para que me genere las aristas mas tarde. en la diagonal va a ser false.
 		for (int i=0; i<dimension; i++){
@@ -97,6 +100,7 @@ public class Grafo {
 		return vectorTemporal;
 
 	}
+	
 	public int[] coloreoSecuencialAleatorio(){
 		int colores[]= new int[dimension];
 		boolean iguales;
@@ -125,13 +129,17 @@ public class Grafo {
 					}else{
 						verticeNoColoreado=false;
 					}
+					if(colores[i]>this.cantidadColores)
+						this.cantidadColores=colores[i];					
+					
 				}
 			}
 		}
+		this.vectorColores = colores;
 		return colores;
 	}
 
-	public int[] coloreoWelshPowell(){
+	public void coloreoWelshPowell(){
 		int grado[]= new int[dimension];
 		int contador;
 		int aux;
@@ -161,10 +169,10 @@ public class Grafo {
 			for (int l=0; l< dimension; l++)
 				grafoAux.matrizAdyacencia[k+1][l]=fila[i];
 		}
-		return grafoAux.coloreoSecuencialAleatorio();
+		this.vectorColores =  grafoAux.coloreoSecuencialAleatorio();
 	}
 	
-	public int[] coloreoMatula(){
+	public void coloreoMatula(){
 		int grado[]= new int[dimension];
 		int contador;
 		int aux;
@@ -194,11 +202,20 @@ public class Grafo {
 			for (int l=0; l< dimension; l++)
 				grafoAux.matrizAdyacencia[k+1][l]=fila[i];
 		}
-		return grafoAux.coloreoSecuencialAleatorio();
+		this.vectorColores = grafoAux.coloreoSecuencialAleatorio();
 	}
 	
+	public String toString(){
+		String string =this.dimension+" "+this.cantidadColores+" "+this.vectorAristas.length+" "+this.porcentaje+"\n";		
+		for(int i =0; i<this.getDimension();i++){
+			string += "Nodo: "+i+" Color: "+this.vectorColores[i]+"\n";
+			
+		}
+		return string;
+	}
 
 	//Getters y Setters
+	 
 	public Integer getDimension() {
 		return dimension;
 	}
@@ -217,6 +234,11 @@ public class Grafo {
 	public void setVectorVertices(Integer n) {
 		this.vectorVertices = new Vertice[n];
 	}
-
+	public Integer getPorcentaje() {
+		return porcentaje;
+	}
+	public void setPorcentaje(Integer porcentaje) {
+		this.porcentaje = porcentaje;
+	}
 
 }
