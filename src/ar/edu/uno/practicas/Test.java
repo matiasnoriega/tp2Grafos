@@ -1,11 +1,12 @@
 package 
+
 import java.io.*;
 import java.util.*;
 
 public class Test {
 
 	public static void main(String[] args) {
-		Grafo grafo;
+		Grafo grafo=null;
 		File file= new File("grafo.in");
 		FileReader fr = null;
 		BufferedReader br;
@@ -32,7 +33,20 @@ public class Test {
 			System.out.println(e2.getStackTrace());
 		}	
 		}
-		// Esperando el toString()...
+		grafo.coloreoSecuencialAleatorio();
+		System.out.println(grafo.toString());
+		FileWriter salida= null;
+		PrintWriter pw = null;
+		try{
+			salida= new FileWriter("grafo.out");
+			pw= new PrintWriter(salida);
+			pw.println(grafo.toString());
+		}catch(Exception e){
+			System.out.println(e.getStackTrace());
+		}finally{
+			if (null!=pw)
+				pw.close();
+		}
 	}
 
 }
