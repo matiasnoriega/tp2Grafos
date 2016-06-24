@@ -126,7 +126,7 @@ public class Grafo {
 		boolean iguales;
 		boolean verticeNoColoreado;
 		
-		for (int i = 1 ; i < dimension; i++){
+		for (int i = 0 ; i < dimension; i++){
 			//Al principio le asigno el color más  bajo posible
 			// e inicializo las banderas para iniciar la comprobacion 
 			// de vertices adyacentes con el mismo color
@@ -134,7 +134,7 @@ public class Grafo {
 			iguales= false;
 			verticeNoColoreado= true;
 			while (verticeNoColoreado){
-				for (int j = 1 ; j < dimension; j++){
+				for (int j = i ; j >=0; j--){
 					// Si son adyacentes compruebo los colores y de acuerdo a eso
 					// cambio las banderas.
 					if (matrizAdyacencia[j][i]){
@@ -158,7 +158,7 @@ public class Grafo {
 		this.vectorColores = colores;
 		return colores;
 	}
-
+	
 	public void coloreoWelshPowell(){
 		int grado[]= new int[dimension];
 		int contador;
