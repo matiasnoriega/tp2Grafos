@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 public class Vertice {
 	private Integer grado;
-	
-	private ArrayList<Arista> aristas;
-	private String nombre;
-	
-	public Vertice() {
+	private Integer numero;
+	public Vertice(Integer numero) {
+		setNumero(numero);
 	}
 	
 	//getters y setters
@@ -18,13 +16,10 @@ public class Vertice {
 	public void setGrado(Integer grado) {
 		this.grado = grado;
 	}
-	private void setNombre(String n) {
-		this.nombre = n;
+	public Integer getNumero(){
+		return this.numero;
 	}
-	public String getNombre() {
-		return this.nombre;
-	}
-	public void AddArista(Arista a) {
-		aristas.add(a);
+	public void setNumero(Integer numero){
+		this.numero = numero;
 	}
 }
