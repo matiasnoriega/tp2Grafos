@@ -44,7 +44,7 @@ public class Grafo {
 
 		//lleno el vector vertice con vertices vacios por ahora
 		for (int i=0;i<dimension;i++){
-				this.vectorVertices[i] = new Vertice(dimension);
+				this.vectorVertices[i] = new Vertice(i);
 		}
 		//genero una matriz de adyacencia toda en true, para que me genere las aristas mas tarde. en la diagonal va a ser false.
 		for (int i=0; i<dimension; i++){
@@ -69,8 +69,8 @@ public class Grafo {
 		this.matrizAdyacencia = generarMatrizAdy(matrizAuxiliar, dimension, this.vectorAristas);
 	}
 
-	public Boolean[][] generarMatrizAdy(Boolean[][] matrizIn, Integer dimension, Arista[] vectorAristas){
-		Boolean[][] matrizAuxAd = matrizIn;
+	public Boolean[][] generarMatrizAdy(Integer dimension, Arista[] vectorAristas){
+		Boolean[][] matrizAuxAd = new Boolean[dimension][dimension];
 		Arista[] vectorAuxAristas = vectorAristas;
 		for(int i=0;i<dimension;i++){
 			for (int j=0; j<dimension; j++){
