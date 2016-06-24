@@ -44,7 +44,7 @@ public class Grafo {
 
 		//lleno el vector vertice con vertices vacios por ahora
 		for (int i=0;i<dimension;i++){
-				this.vectorVertices[i] = new Vertice();
+				this.vectorVertices[i] = new Vertice(dimension);
 		}
 		//genero una matriz de adyacencia toda en true, para que me genere las aristas mas tarde. en la diagonal va a ser false.
 		for (int i=0; i<dimension; i++){
@@ -64,10 +64,28 @@ public class Grafo {
 		}
 		
 		this.vectorAristas=desordenarVector(aristas, this.vectorAristas, porcentaje );
-
-		this.matrizAdyacencia = matrizAuxiliar;
+		
+		
+		this.matrizAdyacencia = generarMatrizAdy(matrizAuxiliar, dimension, this.vectorAristas);
 	}
 
+	public Boolean[][] generarMatrizAdy(Boolean[][] matrizIn, Integer dimension, Arista[] vectorAristas){
+		Boolean[][] matrizAuxAd = matrizIn;
+		Arista[] vectorAuxAristas = vectorAristas;
+		for(int i=0;i<dimension;i++){
+			for (int j=0; j<dimension; j++){
+				matrizAuxAd[i][j] = false;
+			}
+		}
+		for(int i=0; i<vectorAristas.length;i++){
+			matrizAuxAd[vectorAuxAristas[i].getInicio().getNumero()][vectorAuxAristas[i].getDestino().getNumero()]=true;
+			matrizAuxAd[vectorAuxAristas[i].getDestino().getNumero()][vectorAuxAristas[i].getInicio().getNumero()]=true;
+		}
+		
+		
+		return matrizAuxAd;
+		
+	}
 	public Arista[] desordenarVector(Integer dimension, Arista[] vectorAristas, Integer porcentaje){
 
 		Arista[] vectorAuxiliarArista = vectorAristas;
@@ -206,6 +224,7 @@ public class Grafo {
 		}
 		this.vectorColores = grafoAux.coloreoSecuencialAleatorio();
 	}
+	
 	
 	public String toString(){
 		String string =this.dimension+" "+this.cantidadColores+" "+this.vectorAristas.length+" "+this.porcentaje+"\n";		
