@@ -32,7 +32,9 @@ public class Grafo {
 	}
 
 	public Grafo(int dimension, int porcentaje){
-		setVectorVertices(dimension);
+		this.setPorcentaje(porcentaje);
+		this.setVectorVertices(dimension);
+		this.dimension=dimension;
 		Boolean[][] matrizAuxiliar = new Boolean[dimension][dimension];
 
 		//calculo la cantidad de aristas totales que va a tener Kn y las seteo
