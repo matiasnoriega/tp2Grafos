@@ -33,6 +33,18 @@ public class Test {
 		}	
 		}
 		// Esperando el toString()...
+		FileWriter salida= null;
+		PrintWriter pw = null;
+		try{
+			salida= new FileWriter("grafo.out");
+			pw= new PrintWriter(salida);
+			pw.println(".toString()");
+		}catch(Exception e){
+			System.out.println(e.getStackTrace());
+		}finally{
+			if (null!=pw)
+				pw.close();
+		}
 	}
 
 }
